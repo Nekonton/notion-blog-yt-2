@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 import Head from "next/head";
-import { getDatabase, getPage, getBlocks } from "../lib/notion";
+import { getDatabase, getPage, getBlocks } from "../../lib/notion";
 import Link from "next/link";
-import { databaseId } from "./index.js";
-import styles from "./post.module.css";
+import { databaseId } from "../index.js";
+import styles from "../post.module.css";
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -156,7 +156,7 @@ const renderBlock = (block) => {
   }
 };
 
-export default function Post({ page, blocks }) {
+export default function MemberPost({ page, blocks }) {
   if (!page || !blocks) {
     return <div />;
   }
@@ -168,8 +168,8 @@ export default function Post({ page, blocks }) {
       </Head>
 
       <article className={styles.container}>
-        <Link  href="/">
-          <a className={styles.back}>← Go home</a>
+        <Link href="/members">
+          <a className={styles.back}>← Go to members</a>
         </Link>
         <h1 className={styles.name}>
           <Text text={page.properties.Name.title} />
@@ -178,8 +178,8 @@ export default function Post({ page, blocks }) {
           {blocks.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
           ))}
-          <Link href="/">
-            <a className={styles.back}>← Go home</a>
+          <Link href="/members">
+            <a className={styles.back}>← Go to members</a>
           </Link>
         </section>
       </article>
@@ -200,8 +200,7 @@ export const getStaticProps = async (context) => {
   const page = await getPage(id);
   const blocks = await getBlocks(id);
 
-  // Retrieve block children for nested blocks (one level deep), for example toggle blocks
-  // https://developers.notion.com/docs/working-with-page-content#reading-nested-blocks
+  // Retrieve block children for nested blocks (one level deep)
   const childBlocks = await Promise.all(
     blocks
       .filter((block) => block.has_children)
@@ -213,7 +212,6 @@ export const getStaticProps = async (context) => {
       })
   );
   const blocksWithChildren = blocks.map((block) => {
-    // Add child blocks if the block should contain children but none exists
     if (block.has_children && !block[block.type].children) {
       block[block.type]["children"] = childBlocks.find(
         (x) => x.id === block.id
@@ -227,6 +225,6 @@ export const getStaticProps = async (context) => {
       page,
       blocks: blocksWithChildren,
     },
-    revalidate: 1000, //ISR...前回から何秒以内のアクセスを無視するか指定します。
+    revalidate: 1000,
   };
 };
