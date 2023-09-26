@@ -73,6 +73,7 @@ export default function Home({ posts }) {
                     </a>
                   </Link>
                 </h3>
+                <p>dadada</p>
 
                 <p className={styles.postDescription}>{date}</p>
                 <Link href={`/${post.id}`}>
@@ -94,6 +95,6 @@ export const getStaticProps = async () => {
     props: {
       posts: database,
     },
-    revalidate: 100,
+    revalidate: 10,
   };
 };

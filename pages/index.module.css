@@ -64,3 +64,12 @@
   margin-bottom: 12px;
   opacity: 0.65;
 }
+
+/* index.module.css */
+
+.thumbnailImage {
+  width: 100%; /* または任意の幅 */
+  height: auto; /* 高さを自動にして、元のアスペクト比を維持 */
+  max-width: 300px; /* 任意の最大幅 */
+  object-fit: cover; /* 画像がコンテナにフィットするように */
+}

@@ -7,6 +7,7 @@ import styles from "../index.module.css"; // 必要に応じてスタイルを�
 export const databaseId = process.env.NOTION_MEMBERS_DB_ID; // ここを変更
 
 export default function Members({ posts }) {
+  console.log(posts.map((post) => post.properties));
   return (
     <div>
       <Head>
@@ -18,9 +19,7 @@ export default function Members({ posts }) {
         <header className={styles.header}>
           {/* ロゴなどのコードは省略 */}
           <h1>Next.js + Notion API メンバー</h1>
-          <p>
-           メンバーの情報をNotionと連携して表示します。
-          </p>
+          <p>メンバーの情報をNotionと連携して表示します。</p>
         </header>
 
         <h2 className={styles.heading}>All Members</h2>
@@ -43,6 +42,17 @@ export default function Members({ posts }) {
                     </a>
                   </Link>
                 </h3>
+                <p>thumbnail</p>
+                {/* <img src="https://picsum.photos/200" alt="" /> */}
+                {post.properties.Thumbnail &&
+                  post.properties.Thumbnail.files &&
+                  post.properties.Thumbnail.files[0] && (
+                    <img
+                      src={post.properties.Thumbnail.files[0].file.url}
+                      alt={post.properties.Name.title[0].plain_text}
+                      className={styles.thumbnailImage}
+                    />
+                  )}
 
                 <p className={styles.postDescription}>{date}</p>
                 <Link href={`/members/${post.id}`}>
