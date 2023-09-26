@@ -225,6 +225,6 @@ export const getStaticProps = async (context) => {
       page,
       blocks: blocksWithChildren,
     },
-    revalidate: 1000,
+    revalidate: 100,
   };
 };
