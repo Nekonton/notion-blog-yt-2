@@ -33,6 +33,7 @@ export default function Members({ posts }) {
                 year: "numeric",
               }
             );
+            const memberDate = post.properties.Date.date.start; // 日付を取得
             return (
               <li key={post.id} className={styles.post}>
                 <h3 className={styles.postTitle}>
@@ -42,6 +43,7 @@ export default function Members({ posts }) {
                     </a>
                   </Link>
                 </h3>
+                <p>Member Date: {memberDate}</p> {/* 日付を表示 */}
                 <p>thumbnail</p>
                 {/* <img src="https://picsum.photos/200" alt="" /> */}
                 {post.properties.Thumbnail &&
@@ -53,7 +55,6 @@ export default function Members({ posts }) {
                       className={styles.thumbnailImage}
                     />
                   )}
-
                 <p className={styles.postDescription}>{date}</p>
                 <Link href={`/members/${post.id}`}>
                   <a> Read more →</a>
@@ -69,6 +70,13 @@ export default function Members({ posts }) {
 
 export const getStaticProps = async () => {
   const database = await getMembersData(databaseId); // ここを変更
+
+  // 日付の順番にソート
+  const sortedPosts = database.sort((a, b) => {
+    const dateA = new Date(a.properties.Date.date.start);
+    const dateB = new Date(b.properties.Date.date.start);
+    return dateB - dateA; // 降順（最新の日付から）。昇順にしたい場合は dateA - dateB とします。
+  });
 
   return {
     props: {
