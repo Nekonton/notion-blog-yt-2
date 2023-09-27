@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import Head from "next/head";
 import { getDatabase, getPage, getBlocks } from "../../lib/notion";
 import Link from "next/link";
-import { databaseId } from "../index.js";
+import { databaseId } from "./index.js";
 import styles from "../post.module.css";
 
 export const Text = ({ text }) => {
@@ -168,8 +168,8 @@ export default function MemberPost({ page, blocks }) {
       </Head>
 
       <article className={styles.container}>
-        <Link href="/members">
-          <a className={styles.back}>← Go to members</a>
+        <Link href="/projects">
+          <a className={styles.back}>← Go to projects</a>
         </Link>
         <h1 className={styles.name}>
           <Text text={page.properties.Name.title} />
@@ -178,8 +178,8 @@ export default function MemberPost({ page, blocks }) {
           {blocks.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
           ))}
-          <Link href="/members">
-            <a className={styles.back}>← Go to members</a>
+          <Link href="/projects">
+            <a className={styles.back}>← Go to projects</a>
           </Link>
         </section>
       </article>
@@ -225,6 +225,6 @@ export const getStaticProps = async (context) => {
       page,
       blocks: blocksWithChildren,
     },
-    revalidate: 100,
+    revalidate: 1000,
   };
 };

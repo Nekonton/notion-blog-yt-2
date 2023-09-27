@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { getProjectsData } from "../../lib/notion"; // ここを変更
-import { Text } from "../[id].js";
+import { Text } from "./[id].js";
 import styles from "../index.module.css"; // 必要に応じてスタイルを調整
 
 export const databaseId = process.env.NOTION_PROJECTS_DB_ID; // ここを変更
@@ -18,7 +18,7 @@ export default function Projects({ posts }) {
       <main className={styles.container}>
         <header className={styles.header}>
           {/* ロゴなどのコードは省略 */}
-          <h1 className="text-orange-500">Next.js + Notion API Projects page</h1>
+          <h1 className="text-purple-500">Next.js + Notion API Projects page</h1>
           <p>Projectの情報をNotionと連携して表示します。</p>
         </header>
 
@@ -82,6 +82,6 @@ export const getStaticProps = async () => {
     props: {
       posts: database,
     },
-    revalidate: 100,
+    revalidate: 1000,
   };
 };

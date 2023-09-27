@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { getMembersData } from "../../lib/notion"; // ここを変更
-import { Text } from "../[id].js";
+import { Text } from "./[id].js";
 import styles from "../index.module.css"; // 必要に応じてスタイルを調整
 
 export const databaseId = process.env.NOTION_MEMBERS_DB_ID; // ここを変更
@@ -82,6 +82,6 @@ export const getStaticProps = async () => {
     props: {
       posts: database,
     },
-    revalidate: 100,
+    revalidate: 1000,
   };
 };
