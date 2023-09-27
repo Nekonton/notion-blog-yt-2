@@ -18,7 +18,7 @@ export default function Members({ posts }) {
       <main className={styles.container}>
         <header className={styles.header}>
           {/* ロゴなどのコードは省略 */}
-          <h1>Next.js + Notion API メンバー</h1>
+          <h1 className="text-orange-500">Next.js + Notion API メンバー</h1>
           <p>メンバーの情報をNotionと連携して表示します。</p>
         </header>
 
