@@ -47,18 +47,20 @@ export default function Home({ posts }) {
               </g>
             </svg>
           </div>
-          <h1 className="text-lg" >Next.js + Notion API ブログ</h1>
+          <h1 className="text-lg">Next.js + Notion API ブログ</h1>
           <p>
-           Notionと連携しているブログです。Notionに書き込めばそのままブログとして投稿できます。
+            Notionと連携しているブログです。Notionに書き込めばそのままブログとして投稿できます。
           </p>
         </header>
-
-        <h2 className={styles.heading}>All Posts</h2>
-        <ol className={styles.posts}>
-          
-        </ol>
+        <h2>Members</h2>
+        <Link href="/members">
+          <a className={styles.back}> Go to members</a>
+        </Link>
+        <h2>Projects</h2>
+        <Link href="/projects">
+          <a className={styles.back}> Go to projects</a>
+        </Link>
       </main>
     </div>
   );
 }
-

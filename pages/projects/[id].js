@@ -169,7 +169,7 @@ export default function MemberPost({ page, blocks }) {
 
       <article className={styles.container}>
         <Link href="/members">
-          <a className={styles.back}>← Go to members</a>
+          <Text className={styles.back}>← Go to members</Text>
         </Link>
         <h1 className={styles.name}>
           <Text text={page.properties.Name.title} />
@@ -179,7 +179,7 @@ export default function MemberPost({ page, blocks }) {
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
           ))}
           <Link href="/members">
-            <a className={styles.back}>← Go to members</a>
+            <Text className={styles.back}>← Go to members</Text>
           </Link>
         </section>
       </article>
