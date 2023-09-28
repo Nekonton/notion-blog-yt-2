@@ -20,6 +20,9 @@ export default function Members({ posts }) {
           {/* ロゴなどのコードは省略 */}
           <h1 className="text-orange-500">Next.js + Notion API メンバー</h1>
           <p>メンバーの情報をNotionと連携して表示します。</p>
+          <Link href="/">
+            <a className="text-lg text-green-500"> Go to home</a>
+          </Link>
         </header>
 
         <h2 className={styles.heading}>All Members</h2>

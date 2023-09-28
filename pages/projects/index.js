@@ -18,8 +18,13 @@ export default function Projects({ posts }) {
       <main className={styles.container}>
         <header className={styles.header}>
           {/* ロゴなどのコードは省略 */}
-          <h1 className="text-purple-500">Next.js + Notion API Projects page</h1>
+          <h1 className="text-purple-500">
+            Next.js + Notion API Projects page
+          </h1>
           <p>Projectの情報をNotionと連携して表示します。</p>
+          <Link href="/">
+            <a className="text-lg text-green-500"> Go to home</a>
+          </Link>
         </header>
 
         <h2 className={styles.heading}>All Projects</h2>

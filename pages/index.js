@@ -51,6 +51,9 @@ export default function Home({ posts }) {
           <p>
             Notionと連携しているブログです。Notionに書き込めばそのままブログとして投稿できます。
           </p>
+          <Link href="/">
+            <a className={styles.back}> Go to home</a>
+          </Link>
         </header>
         <h2>Members</h2>
         <Link href="/members">
